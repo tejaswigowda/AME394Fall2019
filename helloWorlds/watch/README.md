@@ -24,7 +24,10 @@
 5. 4. Install T-Watch library
    <https://github.com/Xinyuan-LilyGO/TTGO_TWatch_Library>.
 5. Download `helloWorld.ino`
+
 6. Open `helloWorld.ino`
+
 7. Connect watch via USB cable and choose your port in Arduino IDE.
+
 8. Compile and run!
 
