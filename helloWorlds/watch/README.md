@@ -13,7 +13,7 @@
   <https://www.arduino.cc/en/Main/Software>
 <img src='imgs/arduino.png'>
 2. Add this to your boards:
-   <https://dl.espressif.com/dl/package_esp32_dev_index.json>
+   < https://dl.espressif.com/dl/package_esp32_dev_index.json >
    
     (more instructions:
 <https://github.com/espressif/arduino-esp32/blob/master/docs/arduino-ide/boards_manager.md>)
