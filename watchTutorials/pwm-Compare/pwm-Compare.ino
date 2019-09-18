@@ -18,10 +18,8 @@ void setup(){
 }
  
 void loop(){
-
   digitalWrite(21, LOW);
   delay(9);
   digitalWrite(21, HIGH);
   delay(1);
-
 }
