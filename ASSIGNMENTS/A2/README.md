@@ -9,8 +9,10 @@ print text entered on the html client.
 ## Hint
 All you need as markup client html is
 
+```
 <input id='text'>
 <button onclick='submit()'> Submit </button>
+```
 
 ## References
 
