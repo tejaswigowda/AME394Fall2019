@@ -1,26 +1,22 @@
 #include <Arduino.h>
 
-extern "C" {
-#include "user_interface.h"
-}
 
 
 char * HOSTNAME = "test";
 char * WifiPASS = "";
 
-#include <ESP8266WiFi.h>
-#include <ESP8266WebServer.h>
-#include <Hash.h>
+#include <WiFi.h>
+#include <WebServer.h>
 
 
 
-ESP8266WebServer server = ESP8266WebServer(80);
+WebServer server(80);
 
 
 void setup() {
     Serial.begin(115200);
 
-    pinMode(LED_BUILTIN, OUTPUT);
+    pinMode(21, OUTPUT);
 
 
 
@@ -37,12 +33,12 @@ void setup() {
 
     
     server.on("/on", []() {
-      digitalWrite(LED_BUILTIN, 0);
+      digitalWrite(21, 1);
       server.send(200, "text/html", "<html><head></head><body><a href=\"./on\">on</a><br><a href=\"./off\">off</a></body><html>");
     });
 
     server.on("/off", []() {
-      digitalWrite(LED_BUILTIN, 1);
+      digitalWrite(21, 0);
       server.send(200, "text/html", "<html><head></head><body><a href=\"./on\">on</a><br><a href=\"./off\">off</a></body><html>");
      });
 
