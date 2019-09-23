@@ -2,7 +2,7 @@
 
 
 
-char * HOSTNAME = "test";
+char * HOSTNAME = "test123";
 char * WifiPASS = "";
 
 #include <WiFi.h>
@@ -18,7 +18,7 @@ void setup() {
 
     pinMode(21, OUTPUT);
 
-
+  
 
 
     
@@ -28,13 +28,13 @@ void setup() {
     WiFi.softAP(HOSTNAME, WifiPASS);
 
 
-    
+      
     // handle index -- HTTP Server
 
     
     server.on("/bright", []() {
       digitalWrite(21, 1);
-      server.send(200, "text/html", "<html><head></head><body><input type='range' max='100' min=\"0\" onchange='function(event){var v = event.target.value; window.location.href='./bright?' + v}' id='theText'></body><html>");
+      server.send(200, "text/html", "<html><head><script>function foo(v){window.location.href=\"./bright?\" + v}</script></head><body><input type='range' max='100' min=\"0\" onchange='foo(this.value)' id='theText'></body><script>document.getElementById(\"theText\").value=parseInt(window.location.search.replace(\"?\",\"\"))</script><html>");
     });
 
  
