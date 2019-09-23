@@ -34,7 +34,8 @@ void setup() {
     
     server.on("/bright", []() {
       digitalWrite(21, 1);
-      server.send(200, "text/html", "<html><head><script>function foo(v){window.location.href=\"./bright?\" + v}</script></head><body><input type='range' max='100' min=\"0\" onchange='foo(this.value)' id='theText'></body><script>document.getElementById(\"theText\").value=parseInt(window.location.search.replace(\"?\",\"\"))</script><html>");
+      Serial.println(server.arg("v"));
+      server.send(200, "text/html", "<html><head><script>function foo(v){window.location.href=\"./bright?v=\" + v}</script></head><body><input type='range' max='100' min=\"0\" onchange='foo(this.value)' id='theText'></body><script>document.getElementById(\"theText\").value=parseInt(window.location.search.replace(\"?v=\",\"\"))</script><html>");
     });
 
  
