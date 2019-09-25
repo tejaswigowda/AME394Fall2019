@@ -2,8 +2,8 @@
 
 ## Due Sep 30 <sup> th </sup> before midnight
 
-Using the watch httpOnOff-client example
-<https://github.com/tejaswigowda/AME394Fall2019/tree/master/watchTutorials/httpOnOff-Client>
+Using the watch httpOnOff-client-sync example
+<https://github.com/tejaswigowda/AME394Fall2019/blob/master/watchTutorials/httpSlider-Client-sync/httpSlider-Client-sync.ino>
 print text entered on the html client.
 
 ## Hint
