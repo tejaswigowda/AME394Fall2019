@@ -32,7 +32,8 @@ void setup() {
       
       Serial.println(v);
       // write `v` String to Screen
-
+      //eg: you did this in A1
+       
       server.send(200, "text/html", "<html><head><script>function foo(){var v = document.getElementById('theText').value;window.location.href=\"./?v=\" + v}</script></head><body><input type='text' maxlength='100' id='theText'><button  onclick='foo()'  > Submit </button></body><script>document.getElementById(\"theText\").value=window.location.search.replace(\"?v=\",\"\")</script><html>");
     });
 
