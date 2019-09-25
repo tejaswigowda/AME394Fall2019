@@ -12,3 +12,9 @@ TTGO T watch: https://t-watch-document-en.readthedocs.io/en/latest/get-started/i
 
 OS Model
 <image src='https://blogs.bmc.com/wp-content/uploads/2018/06/osi-model-7-layers-804x1024.png'>
+
+
+IP of ESP32 localhost:
+
+http://192.168.4.1
+
