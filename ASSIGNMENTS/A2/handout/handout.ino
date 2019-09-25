@@ -1,7 +1,7 @@
 #include <Arduino.h>
 
 
-char * HOSTNAME = "test12345";
+char * HOSTNAME = "test12345678";
 char * WifiPASS = "";
 
 #include <WiFi.h>
