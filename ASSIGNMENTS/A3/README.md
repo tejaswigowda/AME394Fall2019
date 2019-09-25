@@ -1,6 +1,6 @@
-# Assignment 2
+# Assignment 3
 
-## Due Sep 25 <sup> th </sup> before class
+## Due Oct 7 <sup> th </sup> before class
 
 Using the watch httpOnOff-client example
 <https://github.com/tejaswigowda/AME394Fall2019/tree/master/watchTutorials/httpOnOff-Client>
@@ -16,6 +16,7 @@ All you need as markup client html is
 
 ## References
 
-1. Brush up HTML : <https://www.w3schools.com/html/>
-2. Brush up JS : <https://www.w3schools.com/js/>
+1. AJAX code in `asyncReq.js`
+2. Brush up HTML : <https://www.w3schools.com/html/>
+3. Brush up JS : <https://www.w3schools.com/js/>
 
