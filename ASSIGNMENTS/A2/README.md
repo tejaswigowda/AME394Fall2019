@@ -1,6 +1,6 @@
 # Assignment 2
 
-## Due Sep 25 <sup> th </sup> before class
+## Due Sep 30 <sup> th </sup> before midnight
 
 Using the watch httpOnOff-client example
 <https://github.com/tejaswigowda/AME394Fall2019/tree/master/watchTutorials/httpOnOff-Client>
