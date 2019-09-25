@@ -1,8 +1,15 @@
 #include <Arduino.h>
 
+const int ledPin = 21;
+
+// setting PWM properties
+const int freq = 5000;
+const int ledChannel = 0;
+const int resolution = 8;
+ 
 
 
-char * HOSTNAME = "test123";
+char * HOSTNAME = "test12345";
 char * WifiPASS = "";
 
 #include <WiFi.h>
@@ -16,9 +23,11 @@ WebServer server(80);
 void setup() {
     Serial.begin(115200);
 
-    pinMode(21, OUTPUT);
 
+    ledcSetup(ledChannel, freq, resolution);
   
+  // attach the channel to the GPIO to be controlled
+  ledcAttachPin(ledPin, ledChannel);
 
 
     
@@ -32,15 +41,14 @@ void setup() {
     // handle index -- HTTP Server
 
     
-    server.on("/bright", []() {
-      digitalWrite(21, 1);
-      Serial.println(server.arg("v"));
-      server.send(200, "text/html", "<html><head><script>function foo(v){window.location.href=\"./bright?v=\" + v}</script></head><body><input type='range' max='100' min=\"0\" onchange='foo(this.value)' id='theText'></body><script>document.getElementById(\"theText\").value=parseInt(window.location.search.replace(\"?v=\",\"\"))</script><html>");
-    });
-
- 
     server.on("/", []() {
-      server.send(200, "text/html", "<html><head></head><body><a href=\"./on\">on</a><br><a href=\"./off\">off</a></body><html>");
+      digitalWrite(21, 1);
+      int v = server.arg("v").toInt();
+      
+      Serial.println(v);
+      ledcWrite(ledChannel, map(v, 0, 100, 0, 255));
+
+      server.send(200, "text/html", "<html><head><script>function foo(v){window.location.href=\"./?v=\" + v}</script></head><body><input type='range' max='100' min=\"0\" onchange='foo(this.value)' id='theText'></body><script>document.getElementById(\"theText\").value=parseInt(window.location.search.replace(\"?v=\",\"\"))</script><html>");
     });
 
     
@@ -49,5 +57,5 @@ void setup() {
 }
 
 void loop() {
-    server.handleClient();
+    server.handleClient();  
 }
