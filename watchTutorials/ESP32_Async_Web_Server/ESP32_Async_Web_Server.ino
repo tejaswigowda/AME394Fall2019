@@ -12,7 +12,7 @@ char * HOSTNAME = "test12345";
 char * WifiPASS = "";
 
 // Set LED GPIO
-const int ledPin = 2;
+const int ledPin = 21;
 // Stores LED state
 String ledState;
 
