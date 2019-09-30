@@ -8,9 +8,8 @@
 #include "ESPAsyncWebServer.h"
 #include "SPIFFS.h"
 
-// Replace with your network credentials
-const char* ssid = "REPLACE_WITH_YOUR_SSID";
-const char* password = "REPLACE_WITH_YOUR_PASSWORD";
+char * HOSTNAME = "test12345";
+char * WifiPASS = "";
 
 // Set LED GPIO
 const int ledPin = 2;
@@ -47,15 +46,11 @@ void setup(){
     return;
   }
 
-  // Connect to Wi-Fi
-  WiFi.begin(ssid, password);
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(1000);
-    Serial.println("Connecting to WiFi..");
-  }
+     // Start Wifi AP
+    WiFi.mode(WIFI_AP_STA);
+    WiFi.softAP(HOSTNAME, WifiPASS);
 
-  // Print ESP32 Local IP Address
-  Serial.println(WiFi.localIP());
+
 
   // Route for root / web page
   server.on("/", HTTP_GET, [](AsyncWebServerRequest *request){
