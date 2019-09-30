@@ -3,5 +3,7 @@ ESP32 SPIFFS eg: https://randomnerdtutorials.com/esp32-web-server-spiffs-spi-fla
 TOOL: https://github.com/me-no-dev/arduino-esp32fs-plugin/releases/
 
 
-LIBs: https://github.com/me-no-dev/ESPAsyncWebServer
-      https://github.com/me-no-dev/AsyncTCP
+LIBs:
+https://github.com/me-no-dev/ESPAsyncWebServer
+
+https://github.com/me-no-dev/AsyncTCP
