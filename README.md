@@ -18,3 +18,6 @@ IP of ESP32 localhost:
 
 http://192.168.4.1
 
+
+ESP32 SPIFFS eg:
+https://randomnerdtutorials.com/esp32-web-server-spiffs-spi-flash-file-system/
