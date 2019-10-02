@@ -16,6 +16,15 @@ const int ledPin = 21;
 // Stores LED state
 String ledState;
 
+
+// setting PWM properties
+const int freq = 5000;
+const int ledChannel = 0;
+const int resolution = 8;
+ 
+
+
+
 // Create AsyncWebServer object on port 80
 AsyncWebServer server(80);
 
@@ -38,7 +47,12 @@ String processor(const String& var){
 void setup(){
   // Serial port for debugging purposes
   Serial.begin(115200);
-  pinMode(ledPin, OUTPUT);
+
+    ledcSetup(ledChannel, freq, resolution);
+  
+  // attach the channel to the GPIO to be controlled
+  ledcAttachPin(ledPin, ledChannel);
+
 
   // Initialize SPIFFS
   if(!SPIFFS.begin(true)){
@@ -66,7 +80,7 @@ void setup(){
   server.on("/bright", HTTP_GET, [](AsyncWebServerRequest *request){
           String p = request->arg("v");
             Serial.println(p);
-      //ledcWrite(ledChannel, map(v, 0, 100, 0, 255));
+      ledcWrite(ledChannel, map(v, 0, 100, 0, 255));
 
       request->send(200);
       
