@@ -78,7 +78,7 @@ void setup(){
 
   // Route to set GPIO to HIGH
   server.on("/bright", HTTP_GET, [](AsyncWebServerRequest *request){
-          String p = request->arg("v");
+          int p = request->arg("v").toInt();
             Serial.println(p);
       ledcWrite(ledChannel, map(v, 0, 100, 0, 255));
 
