@@ -1,61 +1,83 @@
-#include <Arduino.h>
+/*********
+  Rui Santos
+  Complete project details at https://randomnerdtutorials.com  
+*********/
 
-const int ledPin = 21;
-
-// setting PWM properties
-const int freq = 5000;
-const int ledChannel = 0;
-const int resolution = 8;
- 
-
+// Import required libraries
+#include "WiFi.h"
+#include "ESPAsyncWebServer.h"
+#include "SPIFFS.h"
 
 char * HOSTNAME = "test12345";
 char * WifiPASS = "";
 
-#include <WiFi.h>
-#include <WebServer.h>
+// Set LED GPIO
+const int ledPin = 21;
+// Stores LED state
+String ledState;
 
+// Create AsyncWebServer object on port 80
+AsyncWebServer server(80);
 
+// Replaces placeholder with LED state value
+String processor(const String& var){
+  Serial.println(var);
+  if(var == "STATE"){
+    if(digitalRead(ledPin)){
+      ledState = "ON";
+    }
+    else{
+      ledState = "OFF";
+    }
+    Serial.print(ledState);
+    return ledState;
+  }
+  return String();
+}
+ 
+void setup(){
+  // Serial port for debugging purposes
+  Serial.begin(115200);
+  pinMode(ledPin, OUTPUT);
 
-WebServer server(80);
+  // Initialize SPIFFS
+  if(!SPIFFS.begin(true)){
+    Serial.println("An Error has occurred while mounting SPIFFS");
+    return;
+  }
 
-
-void setup() {
-    Serial.begin(115200);
-
-
-    ledcSetup(ledChannel, freq, resolution);
-  
-  // attach the channel to the GPIO to be controlled
-  ledcAttachPin(ledPin, ledChannel);
-
-
-    
-
-    // Start Wifi AP
+     // Start Wifi AP
     WiFi.mode(WIFI_AP_STA);
     WiFi.softAP(HOSTNAME, WifiPASS);
 
 
-      
-    // handle index -- HTTP Server
 
-    
-    server.on("/", []() {
-      digitalWrite(21, 1);
-      int v = server.arg("v").toInt();
-      
-      Serial.println(v);
-      ledcWrite(ledChannel, map(v, 0, 100, 0, 255));
+  // Route for root / web page
+  server.on("/", HTTP_GET, [](AsyncWebServerRequest *request){
+    request->send(SPIFFS, "/index.html", String(), false, processor);
+  });
+  
+  // Route to load style.css file
+  server.on("/script.js ", HTTP_GET, [](AsyncWebServerRequest *request){
+    request->send(SPIFFS, "/script.js", "script/javascript");
+  });
 
-      server.send(200, "text/html", "<html><head><script>function foo(v){window.location.href=\"./?v=\" + v}</script></head><body><input type='range' max='100' min=\"0\" onchange='foo(this.value)' id='theText'></body><script>document.getElementById(\"theText\").value=parseInt(window.location.search.replace(\"?v=\",\"\"))</script><html>");
-    });
+  // Route to set GPIO to HIGH
+  server.on("/on", HTTP_GET, [](AsyncWebServerRequest *request){
+    digitalWrite(ledPin, HIGH);    
+    request->send(SPIFFS, "/index.html", String(), false, processor);
+  });
+  
+  // Route to set GPIO to LOW
+  server.on("/off", HTTP_GET, [](AsyncWebServerRequest *request){
+    digitalWrite(ledPin, LOW);    
+    request->send(SPIFFS, "/index.html", String(), false, processor);
+  });
 
-    
-    server.begin();
-    
+  // Start server
+  server.begin();
 }
-
-void loop() {
-    server.handleClient();  
+ 
+void loop(){
+  
 }
