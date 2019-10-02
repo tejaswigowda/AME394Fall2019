@@ -68,7 +68,7 @@ void setup(){
             Serial.println(p);
       //ledcWrite(ledChannel, map(v, 0, 100, 0, 255));
 
-      server.send(200,"1");
+      request->send(200);
       
   });
   
