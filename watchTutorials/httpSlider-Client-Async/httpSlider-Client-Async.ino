@@ -58,21 +58,20 @@ void setup(){
   });
   
   // Route to load style.css file
-  server.on("/script.js ", HTTP_GET, [](AsyncWebServerRequest *request){
+  server.on("/script.js", HTTP_GET, [](AsyncWebServerRequest *request){
     request->send(SPIFFS, "/script.js", "script/javascript");
   });
 
   // Route to set GPIO to HIGH
-  server.on("/on", HTTP_GET, [](AsyncWebServerRequest *request){
-    digitalWrite(ledPin, HIGH);    
-    request->send(SPIFFS, "/index.html", String(), false, processor);
+  server.on("/bright", HTTP_GET, [](AsyncWebServerRequest *request){
+       AsyncWebParameter* p = request->getParam("v", true);
+            Serial.println(p);
+      //ledcWrite(ledChannel, map(v, 0, 100, 0, 255));
+
+      server.send(200,"1");
+      
   });
   
-  // Route to set GPIO to LOW
-  server.on("/off", HTTP_GET, [](AsyncWebServerRequest *request){
-    digitalWrite(ledPin, LOW);    
-    request->send(SPIFFS, "/index.html", String(), false, processor);
-  });
 
   // Start server
   server.begin();
