@@ -21,3 +21,6 @@ http://192.168.4.1
 
 ESP32 SPIFFS eg:
 https://randomnerdtutorials.com/esp32-web-server-spiffs-spi-flash-file-system/
+
+NODE + mongo on Ubuntu:
+https://gist.github.com/tejaswigowda/f289e9bff13d152876e8d4b3281142f8
