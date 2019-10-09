@@ -25,7 +25,7 @@ void loop() {
  
     HTTPClient http;
  
-    http.begin("http://jsonplaceholder.typicode.com/comments?id=10"); //Specify the URL
+    http.begin("http://34.216.181.26:3000/getValue"); //Specify the URL
     int httpCode = http.GET();                                        //Make the request
  
     if (httpCode > 0) { //Check for the returning code
