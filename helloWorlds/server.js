@@ -1,5 +1,5 @@
 var http = require('http');
-var hostname = '127.0.0.1';
+var hostname = process.env.HOSTNAME || 'localhost';
 var port = 3000;
 
 var callback = function(req, res){
