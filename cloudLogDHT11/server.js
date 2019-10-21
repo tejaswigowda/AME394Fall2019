@@ -9,18 +9,12 @@ var VALUE1 = "";
 var VALUE2 = "";
 
 app.get("/", function (req, res) {
-    res.redirect("/index.html");
-});
-
-app.get("/getValue", function (req, res) {
-  res.send(VALUE1 + "\r" + VALUE2);
- // res.send(VALUE1);
- // res.send(VALUE2);
+  res.send("Temperature: " + VALUE1 + "C \r Humidity: " + VALUE2 + "%");
 });
 
 app.get("/setValue", function (req, res) {
-  var v1 = decodeURIComponent(req.query.v1);
-  var v2 = decodeURIComponent(req.query.v2);
+  var v1 = decodeURIComponent(req.query.t);
+  var v2 = decodeURIComponent(req.query.h);
   VALUE1 = v1;
   VALUE2 = v2;
   res.send(VALUE1 + "\n" + VALUE2);
