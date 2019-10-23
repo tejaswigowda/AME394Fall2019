@@ -24,3 +24,7 @@ https://randomnerdtutorials.com/esp32-web-server-spiffs-spi-flash-file-system/
 
 NODE + mongo on Ubuntu:
 https://gist.github.com/tejaswigowda/f289e9bff13d152876e8d4b3281142f8
+
+
+Mongo setup (EC2+Ubuntu)
+https://github.com/zanayr/EC2-MongoDB-Tutorial/blob/master/README.md
