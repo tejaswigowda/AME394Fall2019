@@ -9,7 +9,7 @@ var VALUE1 = "";
 var VALUE2 = "";
 
 app.get("/", function (req, res) {
-  res.send("Temperature: " + VALUE1*1.8 + 32 + "F \r Humidity: " + VALUE2 + "%");
+  res.send("Temperature: " + (VALUE1*1.8 + 32) + "F \r Humidity: " + VALUE2 + "%");
 });
 
 app.get("/setValue", function (req, res) {
