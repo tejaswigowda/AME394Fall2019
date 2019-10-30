@@ -27,7 +27,7 @@ app.get("/setValue", function (req, res) {
 		ts: new Date().getTime()
 	}
 
-	db.collection("data").insert(newObj, function(err, result){}));
+	db.collection("data").insert(newObj, function(err, result){});
 
   res.send(VALUE1 + "\n" + VALUE2);
 });
