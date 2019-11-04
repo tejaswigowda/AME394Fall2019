@@ -13,3 +13,7 @@ the following code:
 2. https://www.instructables.com/id/Getting-Started-With-AWS-IoT-With-Wireless-Tempera/
 3. https://www.youtube.com/watch?v=UGcL9y_Cung
 
+## Basic Requirements
+1. A block diagram
+2. screenshots (if applicable) for each step
+3. All bash commands should be in <code>
