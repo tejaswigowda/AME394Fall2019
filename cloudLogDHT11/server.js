@@ -16,6 +16,14 @@ app.get("/", function (req, res) {
   res.send("Temperature: " + (VALUE1*1.8 + 32) + "F \r Humidity: " + VALUE2 + "%");
 });
 
+app.get("/getValue", function (req, res) {
+  var ts = parseInt(req.query.ts);
+	db.collection("data").findOne({ts:{$lte:ts}}, function(err, result){
+    console.log(err, result);
+  });
+});
+
+
 app.get("/setValue", function (req, res) {
   var v1 = decodeURIComponent(req.query.t);
   var v2 = decodeURIComponent(req.query.h);

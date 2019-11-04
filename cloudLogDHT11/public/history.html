@@ -2,12 +2,15 @@
 <head>
 <script src='asyncReq.js'></script>
 <script>
-function sendDataToServer()
+function getData()
 {
+  var ts = new Date(document.getElementById("theTime").value).getTime()
+
 	var l1 = encodeURIComponent(document.getElementById("line1").value);
 	var l2 = encodeURIComponent(document.getElementById("line2").value);
-	var url = "./setValue?v1=" + l1 + "&v2=" + l2;
+	var url = "./getValue?ts=" + ts;
 	var callback = function(data){
+    alert(data);
 		return;
 	}
 	loadFile(url, callback);
