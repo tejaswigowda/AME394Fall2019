@@ -10,7 +10,7 @@ function getData()
   console.log(url);
 	var callback = function(data){
     var ob = JSON.parse(data);
-    var markup = "<h1> Temperature </h1>" + ob.t + "<h1>Humidity</h1>" + ob.h;
+    var markup = "<h1> Temperature </h1>" + ob.t + "<h1>Humidity</h1>" + ob.h + "<h2> at " + new Date(ob.ts) + "</h2>";
 		document.getElementById("data").innerHTML = markup;
 	}
 	loadFile(url, callback);
