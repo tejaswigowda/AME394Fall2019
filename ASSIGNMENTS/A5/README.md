@@ -17,3 +17,4 @@ the following code:
 1. A block diagram
 2. screenshots (if applicable) for each step
 3. All bash commands should be in <code>
+4. Write tutorial only for displaying latest temperature/humidity.
