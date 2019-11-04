@@ -10,7 +10,7 @@ var VALUE1 = "";
 var VALUE2 = "";
 
 
-var db = MS.db("mongodb://127.0.0.1:27017/sensorData");
+var db = MS.db("mongodb://34.216.181.26:27017/sensorData"); //change this!!!
 
 app.get("/", function (req, res) {
   res.send("Temperature: " + (VALUE1*1.8 + 32) + "F \r Humidity: " + VALUE2 + "%");
