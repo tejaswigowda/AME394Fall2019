@@ -6,11 +6,9 @@ function getData()
 {
   var ts = new Date(document.getElementById("theTime").value).getTime()
 
-	var l1 = encodeURIComponent(document.getElementById("line1").value);
-	var l2 = encodeURIComponent(document.getElementById("line2").value);
 	var url = "./getValue?ts=" + ts;
 	var callback = function(data){
-    alert(data);
+    alert(data)
 		return;
 	}
 	loadFile(url, callback);
