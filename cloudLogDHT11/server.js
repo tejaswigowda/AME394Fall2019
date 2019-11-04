@@ -19,7 +19,7 @@ app.get("/", function (req, res) {
 app.get("/getValue", function (req, res) {
   var ts = parseInt(req.query.ts);
 	db.collection("data").findOne({ts:{$lte:ts}}, function(err, result){
-    console.log(err, result);
+    res.send(JSON.stringify(result));
   });
 });
 

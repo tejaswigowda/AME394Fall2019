@@ -7,6 +7,7 @@ function getData()
   var ts = new Date(document.getElementById("theTime").value).getTime()
 
 	var url = "./getValue?ts=" + ts;
+  console.log(url);
 	var callback = function(data){
     alert(data)
 		return;
