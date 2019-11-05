@@ -1,6 +1,6 @@
 # Assignment 5
 
-## Due Nov 6<sup>th</sup> before class
+## Due Nov 6<sup>th</sup> before midnight
 
 Write a one page tutorial (in html/md) to explain to the user how to use
 the following code:
@@ -17,3 +17,4 @@ the following code:
 1. A block diagram
 2. screenshots (if applicable) for each step
 3. All bash commands should be in <code>
+4. Write tutorial only for displaying latest temperature/humidity.
