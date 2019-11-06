@@ -26,8 +26,14 @@ app.get("/getValue", function (req, res) {
 
 app.get("/getAverage", function (req, res) { // edit this for A6
   var ts = parseInt(req.query.ts);
-	db.collection("data").findOne({ts:{$lte:ts}, ts:{$gt:0}}, function(err, result){
-    res.send(JSON.stringify(result));
+  var begin = ts;
+  var end = ts;
+	db.collection("data").find({ts:{$lte:ts}, ts:{$gt:0}}).toArray(function(err, result){
+    var ret = { // calulate from result
+     t: 0,
+     h: 0
+    }
+    res.send(JSON.stringify(ret));
   });
 });
 
