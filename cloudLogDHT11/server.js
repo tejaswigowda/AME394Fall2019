@@ -18,7 +18,15 @@ app.get("/", function (req, res) {
 
 app.get("/getValue", function (req, res) {
   var ts = parseInt(req.query.ts);
-	db.collection("data").findOne({ts:{$lte:ts}}, function(err, result){
+	db.collection("data").findOne({ts:{$lte:ts}, ts:{$gt:0}}, function(err, result){
+    res.send(JSON.stringify(result));
+  });
+});
+
+
+app.get("/getAverage", function (req, res) { // edit this for A6
+  var ts = parseInt(req.query.ts);
+	db.collection("data").findOne({ts:{$lte:ts}, ts:{$gt:0}}, function(err, result){
     res.send(JSON.stringify(result));
   });
 });

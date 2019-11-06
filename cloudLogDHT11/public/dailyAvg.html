@@ -6,7 +6,7 @@ function getData()
 {
   var ts = new Date(document.getElementById("theTime").value).getTime()
 
-	var url = "./getValue?ts=" + ts;
+	var url = "./getAverage?ts=" + ts;
   console.log(url);
 	var callback = function(data){
     var ob = JSON.parse(data);
@@ -28,9 +28,8 @@ function getData()
 </head>
 
 <body>
-	<h1> Sensor History</h1>
-  <input type="datetime-local" id="theTime">
-  <button onclick='getData()'>Submit</button>
-  <div id='data'>Choose a date/time</div>
+	<h1> Daily Average</h1>
+  <input onchange='getData()' type="date" id="theTime">
+  <div id='data'>Choose a date</div>
 </body>
 </html>
