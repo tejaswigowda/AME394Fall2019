@@ -1,0 +1,36 @@
+<html>
+<head>
+<script src='asyncReq.js'></script>
+<script>
+function getData()
+{
+  var ts = new Date(document.getElementById("theTime").value).getTime()
+
+	var url = "./getValue?ts=" + ts;
+  console.log(url);
+	var callback = function(data){
+    var ob = JSON.parse(data);
+    console.log(data)
+    var markup = "<h1> Temperature </h1>" + ob.t + "<h1>Humidity</h1>" + ob.h + "<h2> at " + new Date(ob.ts) + "</h2>";
+		document.getElementById("data").innerHTML = markup;
+	}
+	loadFile(url, callback);
+}
+
+
+</script>
+<style>
+	input{
+		font-size: 30px;
+		font-family: Courier;
+	}
+</style>
+</head>
+
+<body>
+	<h1> Sensor History</h1>
+  <input type="datetime-local" id="theTime">
+  <button onclick='getData()'>Submit</button>
+  <div id='data'>Choose a date/time</div>
+</body>
+</html>
