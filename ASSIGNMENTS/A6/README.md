@@ -7,7 +7,7 @@ Complete the daily average example:
 
 
 ## Inspiration
-<https://github.com/tejaswigowda/AME394Fall2019/blob/master/cloudLogDHT11/public/dailyAvg.html
+<https://github.com/tejaswigowda/AME394Fall2019/blob/master/cloudLogDHT11/public/history.html
 > -- done in class
 
   
