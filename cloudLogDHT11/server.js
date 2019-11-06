@@ -28,8 +28,12 @@ app.get("/getAverage", function (req, res) { // edit this for A6
   var ts = parseInt(req.query.ts);
   var begin = ts;
   var end = ts;
-	db.collection("data").find({ts:{$lte:ts}, ts:{$gt:0}}).toArray(function(err, result){
-    var ret = { // calulate from result
+  /*begin.setHours(0)
+   * begin.setMinutes(0)
+   */
+
+	db.collection("data").find({ts:{$lte:end.getTime()}, ts:{$gt:begin.getTime()}}).toArray(function(err, result){
+    var ret = { // calculate from result
      t: 0,
      h: 0
     }
