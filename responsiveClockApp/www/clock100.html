@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+  <head>
+    <style>
+    body{
+      margin:0px;
+    }
+ #clockFrame{
+    height: 100px;
+    width: 100px;
+    border: double 1px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50px, -50px);
+    border-radius: 50%;
+  }
+  #clockFrame.light{
+    background:white;
+    color: black;
+  }
+  #clockFrame.dark{
+    background:black;
+    color: white;
+  }
+  #clockFrame.dark #hour{
+      background: white;
+  }
+  #clockFrame.light #hour{
+      background: black;
+  }
+  .num{
+    position:absolute;
+    transform-origin: 0 50px;
+  }
+  #num12{
+        transform: translate(50px);
+  }
+  #num1{
+        transform: translate(50px) rotate(30deg);
+  }
+  #num2{
+        transform: translate(50px) rotate(60deg);
+  }
+  #num3{
+        transform: translate(50px) rotate(90deg);
+  }
+  #num4{
+        transform: translate(50px) rotate(120deg);
+  }
+  #num5{
+        transform: translate(50px) rotate(150deg);
+  }
+  #num6{
+        transform: translate(50px) rotate(180deg);
+  }
+  #num7{
+        transform: translate(50px) rotate(210deg);
+  }
+  #num8{
+        transform: translate(50px) rotate(240deg);
+  }
+  #num9{
+        transform: translate(50px) rotate(270deg);
+  }
+  #num10{
+        transform: translate(50px) rotate(300deg);
+  }
+  #num11{
+        transform: translate(50px) rotate(330deg);
+  }
+  #hour{
+    width: 25px;
+    height: 2px;
+    transform-origin: 0px;
+    transform: translate(50px,50px);
+  }
+  #min{
+    width: 35px;
+    height: 2px;
+    background: blue;
+    transform-origin: 0px;
+    transform: translate(50px,50px);
+    box-shadow:white 0px 0px 1px;
+  }
+  #sec{
+    width: 45px;
+    height: 1px;
+    background: red;
+    transform-origin: 0px;
+    transform: translate(50px,50px);
+  }
+    </style>
+    <script>
+    var offset = 0;
+    function start(){
+      offset = parseFloat(window.location.hash.replace("#","") || "0");
+      setTime();
+      setInterval("setTime()", 1000);
+    }
+
+    function setTime(){
+      var now = new Date();
+      var millis = now.getTime() + now.getTimezoneOffset() * 60 * 1000 + offset * 60 * 60 *1000;
+      var d = new Date(millis);
+      var h = d.getHours()
+      var m = d.getMinutes()
+      var s = d.getSeconds()
+
+      var hAngle = (h - 3) * 30 + (m-15)*.5;
+      var mAngle = (m - 15) * 6;
+      var sAngle = (s - 15) * 6;
+
+      document.getElementById("hour").style.transform = "translate(50px,50px) rotate(" + hAngle + "deg)";
+      document.getElementById("min").style.transform = "translate(50px,50px) rotate(" + mAngle + "deg)";
+      document.getElementById("sec").style.transform = "translate(50px,50px) rotate(" + sAngle + "deg)";
+
+      if(h >=6 && h <18){
+        document.getElementById("clockFrame").className = "light";
+      }
+      else{
+        document.getElementById("clockFrame").className = "dark";
+      }
+    }
+    </script>
+  </head>
+
+  <body onload='start()'>
+    <div id='clockFrame'>
+      <div class='num 'id='num1'> | </div>
+      <div class='num 'id='num2'> | </div>
+      <div class='num 'id='num3'> | </div>
+      <div class='num 'id='num4'> | </div>
+      <div class='num 'id='num5'> | </div>
+      <div class='num 'id='num6'> | </div>
+      <div class='num 'id='num7'> | </div>
+      <div class='num 'id='num8'> | </div>
+      <div class='num 'id='num9'> | </div>
+      <div class='num 'id='num10'> | </div>
+      <div class='num 'id='num11'> | </div>
+      <div class='num 'id='num12'> | </div>
+
+      <div id='hour'> </div>
+      <div id='min'> </div>
+      <div id='sec'> </div>
+
+    </div>
+  </body>
+</html>

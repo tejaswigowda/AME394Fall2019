@@ -1,0 +1,7 @@
+{
+  "appId": "clock.app",
+  "appName": "clock",
+  "bundledWebRuntime": true,
+  "npmClient": "npm",
+  "webDir": "www"
+}

@@ -1,0 +1,280 @@
+<!doctype html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+  <style>
+  body{
+    margin:0px;
+    font-family: Helvetica;
+  }
+  /* small screen < 600px width */
+  @media (max-width:600px){
+    #tzList{
+        width: 100%;
+    }
+    #clockWrapper{
+        width: 100%;
+    }
+    body.selected #addButton{
+      display:none;
+    }
+    body.selected #backButton{
+      display:block;
+    }
+    body.selected #tzList{
+      display: none;
+    }
+    body.selected #clockWrapper{
+      display: block;
+    }
+
+    body #tzList{
+      display: block;
+    }
+    body #clockWrapper{
+      display: none;
+    }
+    #clockWrapper h1{
+      margin-top: 100px;
+    }
+
+  }
+  /* wide screen */
+  @media (min-width:600px){
+    #tzList{
+        width: 260px;
+    }
+    #clockWrapper{
+        width: calc(100% - 260px);
+    }
+  }
+  #backButton{
+    display:none;
+  }
+  button.action{
+    color: black;
+    box-shadow: none;
+    background: none;
+    border: none;
+    font-weight: bold;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    position: fixed;
+    font-size: 50px;
+  }
+  #tzList{
+    display: block;
+    background:lightgray;
+    position:absolute;
+    top: 0;
+    left: 0;
+    margin: 0px;
+    padding: 0px;
+    height: auto;
+    min-height: 100%;
+  }
+  #clockWrapper{
+    text-align:center;
+    display:block;
+    background:white;
+    position:absolute;
+    top: 0;
+    right: 0;
+    margin: 0px;
+    padding: 0px;
+    height: auto;
+    min-height: 100%;
+  }
+  #clockWrapper iframe{
+    height: 320px;
+    width: 320px;
+    border:none;
+  }
+  #addButton{
+    bottom: 0;
+    right: 0;
+  }
+  #backButton{
+    top: 0;
+    left: 0;
+  }
+  #closeButton{
+    top: 0;
+    right: 0;
+    color: white;
+  }
+  button.box{
+    display:block;
+    position: relative;
+    width: 100%;
+    height: 115px;
+    overflow: hidden;
+  }
+  button.box .overlay{
+    display:block;
+    position:absolute;
+    height: 100%;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+  }
+  .box h1{
+    width: calc(100% - 105px);
+    margin: 0;
+    padding: 0px;
+    margin-left: 100px;
+    text-align: left;
+  }
+  .box h2{
+    width: calc(100% - 105px);
+    margin: 0;
+    padding: 0px;
+    margin-left: 100px;
+    text-align: left;
+  }
+  .box iframe{
+    height: 110px;
+    width: 105px;
+    border: none;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+  }
+  #tsSelectOverlay{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.8);
+  }
+  #tsWrapper{
+    width: 330px;
+    height: 300px;
+    margin: auto;
+    margin-top: 100px;
+  }
+  .select2-container--default .select2-selection--multiple{
+    height: 200px;
+  }
+  button.box.active{
+    background: gold;
+  }
+  </style>
+  <script>
+  function closeClicked()
+  {
+    buildTZList();
+    $("#tsSelectOverlay").fadeOut();
+    $("#addButton").fadeIn();
+  }
+
+  function addNewClicked()
+  {
+    $("#tsSelectOverlay").fadeIn();
+    $("#addButton").fadeOut();
+  }
+  function backClicked(){
+    $("body").removeClass("selected");
+    setTimeout('$("#tzList button.box").removeClass("active")', 1000);
+  }
+  function start(){
+    $("#tsSelectOverlay").fadeOut(0);
+    $('#timezoneSelect').select2();
+    buildTZList();
+  }
+
+  function buildTZList(){
+    var listTZ = $("#timezoneSelect").select2("data");
+    var markup = "";
+    for (var i = 0; i < listTZ.length; i++){
+      var tzname = listTZ[i].text;
+      var tzdesc = listTZ[i].id;
+      var offset = listTZ[i].id;
+      var url = "./clock100.html#" + offset;
+      markup += "<button class='box' onclick='tzSelected(" + i + ")'> <h1>" + tzname + "</h1> <iframe src='" + url + "'></iframe> <div class='overlay'></div></button>"
+    }
+    document.getElementById("tzList").innerHTML = markup;
+    if($("html").width() > 600){
+      tzSelected(0);
+    }
+  }
+  function tzSelected(index)
+  {
+    $("body").addClass("selected");
+
+    $("#tzList button.box").removeClass("active");
+    $("#tzList button.box:nth-of-type(" + (index + 1) + ")").addClass("active");
+
+    var listTZ = $("#timezoneSelect").select2("data");
+    var markup = "<h1>" + listTZ[index].text + "</h1><iframe src='clock.html#" + listTZ[index].id + "'></iframe>";
+    document.getElementById("clockWrapper").innerHTML = markup;
+  }
+  </script>
+</head>
+
+<body onload='start()'>
+  <div id='tzList'>
+  </div>
+  <div id='clockWrapper'>
+  </div>
+
+  <button class='action' onclick='addNewClicked()' id='addButton'> <i class="far fa-edit"></i> </button>
+  <button class='action' onclick='backClicked()' id='backButton'> <i class="fas fa-arrow-left"></i> </button>
+
+  <div id='tsSelectOverlay' style='display:none'>
+    <div id='tsWrapper'>
+    <select name="timezoneSelect" multiple='multiple' id="timezoneSelect" onchange="updateClock()">
+    	<option value="-12:00">(GMT -12:00) Eniwetok, Kwajalein</option>
+    	<option value="-11:00">(GMT -11:00) Midway Island, Samoa</option>
+    	<option value="-10:00">(GMT -10:00) Hawaii</option>
+    	<option value="-09:50">(GMT -9:30) Taiohae</option>
+    	<option value="-09:00">(GMT -9:00) Alaska</option>
+    	<option value="-08:00">(GMT -8:00) Pacific Time (US &amp; Canada)</option>
+    	<option value="-07:00" selected="selected">(GMT -7:00) Mountain Time (US &amp; Canada)</option>
+    	<option value="-06:00">(GMT -6:00) Central Time (US &amp; Canada), Mexico City</option>
+    	<option value="-05:00">(GMT -5:00) Eastern Time (US &amp; Canada), Bogota, Lima</option>
+    	<option value="-04:50">(GMT -4:30) Caracas</option>
+    	<option value="-04:00">(GMT -4:00) Atlantic Time (Canada), Caracas, La Paz</option>
+    	<option value="-03:50">(GMT -3:30) Newfoundland</option>
+    	<option value="-03:00">(GMT -3:00) Brazil, Buenos Aires, Georgetown</option>
+    	<option value="-02:00">(GMT -2:00) Mid-Atlantic</option>
+    	<option value="-01:00">(GMT -1:00) Azores, Cape Verde Islands</option>
+    	<option value="+00:00">(GMT) Western Europe Time, London, Lisbon, Casablanca</option>
+    	<option value="+01:00">(GMT +1:00) Brussels, Copenhagen, Madrid, Paris</option>
+    	<option value="+02:00">(GMT +2:00) Kaliningrad, South Africa</option>
+    	<option value="+03:00">(GMT +3:00) Baghdad, Riyadh, Moscow, St. Petersburg</option>
+    	<option value="+03:50">(GMT +3:30) Tehran</option>
+    	<option value="+04:00">(GMT +4:00) Abu Dhabi, Muscat, Baku, Tbilisi</option>
+    	<option value="+04:50">(GMT +4:30) Kabul</option>
+    	<option value="+05:00">(GMT +5:00) Ekaterinburg, Islamabad, Karachi, Tashkent</option>
+    	<option value="+05:50">(GMT +5:30) Bombay, Calcutta, Madras, New Delhi</option>
+    	<option value="+05:75">(GMT +5:45) Kathmandu, Pokhara</option>
+    	<option value="+06:00">(GMT +6:00) Almaty, Dhaka, Colombo</option>
+    	<option value="+06:50">(GMT +6:30) Yangon, Mandalay</option>
+    	<option value="+07:00">(GMT +7:00) Bangkok, Hanoi, Jakarta</option>
+    	<option value="+08:00">(GMT +8:00) Beijing, Perth, Singapore, Hong Kong</option>
+    	<option value="+08:75">(GMT +8:45) Eucla</option>
+    	<option value="+09:00">(GMT +9:00) Tokyo, Seoul, Osaka, Sapporo, Yakutsk</option>
+    	<option value="+09:50">(GMT +9:30) Adelaide, Darwin</option>
+    	<option value="+10:00">(GMT +10:00) Eastern Australia, Guam, Vladivostok</option>
+    	<option value="+10:50">(GMT +10:30) Lord Howe Island</option>
+    	<option value="+11:00">(GMT +11:00) Magadan, Solomon Islands, New Caledonia</option>
+    	<option value="+11:50">(GMT +11:30) Norfolk Island</option>
+    	<option value="+12:00">(GMT +12:00) Auckland, Wellington, Fiji, Kamchatka</option>
+    	<option value="+12:75">(GMT +12:45) Chatham Islands</option>
+    	<option value="+13:00">(GMT +13:00) Apia, Nukualofa</option>
+    	<option value="+14:00">(GMT +14:00) Line Islands, Tokelau</option>
+    </select>
+  </div>
+    <button class='action' onclick='closeClicked()' id='closeButton'> <i class="fas fa-times"></i> </button>
+  </div>
+</body>
+
+</html>
