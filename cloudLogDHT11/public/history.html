@@ -6,6 +6,7 @@ function getData()
 {
   var ts = new Date(document.getElementById("theTime").value).getTime()
 
+  /*
 	var url = "./getValue?ts=" + ts;
   console.log(url);
 	var callback = function(data){
@@ -14,7 +15,14 @@ function getData()
     var markup = "<h1> Temperature </h1>" + ob.t + "<h1>Humidity</h1>" + ob.h + "<h2> at " + new Date(ob.ts) + "</h2>";
 		document.getElementById("data").innerHTML = markup;
 	}
-	loadFile(url, callback);
+	loadFile(url, callback);*/
+
+	loadFile("./getValue?ts=" + ts, function(data){
+    var ob = JSON.parse(data);
+    console.log(data)
+    var markup = "<h1> Temperature </h1>" + ob.t + "<h1>Humidity</h1>" + ob.h + "<h2> at " + new Date(ob.ts) + "</h2>";
+		document.getElementById("data").innerHTML = markup;
+	});
 }
 
 
