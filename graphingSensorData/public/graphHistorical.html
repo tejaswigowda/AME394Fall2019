@@ -17,7 +17,7 @@ function getDataFromServer()
 		var obj = JSON.parse(data);
 		var columns = [["x"],["Temperature"],["Humidity"]]
 		for(var i = 0; i < obj.length; i++){
-			var timestamp = parseInt(obj[i].time);
+			var timestamp = parseInt(obj[i].ts || obj[i].time);
 			if(timestamp > lastAddedTS){
 				columns[0].push(getTSInFormat(timestamp));
 				columns[1].push(obj[i].t || 0);
@@ -46,7 +46,7 @@ function start(){
 		var obj = JSON.parse(data);
 		var columns = [["x"],["Temperature"],["Humidity"]]
 		for(var i = 0; i < obj.length; i++){
-			var timestamp = parseInt(obj[i].time);
+			var timestamp = parseInt(obj[i].ts || obj[i].time);
 			columns[0].push(getTSInFormat(timestamp));
 			columns[1].push(obj[i].t || 0);
 			columns[2].push(obj[i].h || 0);

@@ -15,11 +15,11 @@ function getDataFromServer()
 		var obj = JSON.parse(data);
 		var columns = [["x"],["Temperature"],["Humidity"]]
 		for(var i = 0; i < obj.length; i++){
-			var timestamp = parseInt(obj[i].time);
+			var timestamp = parseInt(obj[i].ts || obj[i].time);
 			if(timestamp > lastAddedTS){
 				columns[0].push(getTSInFormat(timestamp));
-				columns[1].push(obj[i].t || 0);
-				columns[2].push(obj[i].h || 0);
+				columns[1].push(parseFloat(obj[i].t || 0));
+				columns[2].push(parseFloat(obj[i].h || 0));
 				lastAddedTS = timestamp;
 			}
 		}
@@ -41,10 +41,12 @@ function start(){
 		var obj = JSON.parse(data);
 		var columns = [["x"],["Temperature"],["Humidity"]]
 		for(var i = 0; i < obj.length; i++){
-			var timestamp = parseInt(obj[i].time);
+			var timestamp = parseInt(obj[i].ts || obj[i].time);
+      console.log(obj[i].ts);
+      console.log(timestamp);
 			columns[0].push(getTSInFormat(timestamp));
-			columns[1].push(obj[i].t || 0);
-			columns[2].push(obj[i].h || 0);
+				columns[1].push(parseFloat(obj[i].t || 0));
+				columns[2].push(parseFloat(obj[i].h || 0));
 			lastAddedTS = timestamp;
 		}
 		chart = c3.generate({
@@ -64,12 +66,12 @@ function start(){
     	}
 		});
 
+    setInterval("getDataFromServer()", 1000);
 
 	}
 	loadFile(url, callback);
 
 
-	setInterval("getDataFromServer()", 1000);
 }
 
 
