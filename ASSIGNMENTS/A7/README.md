@@ -16,3 +16,7 @@ Complete the history graph example:
 
 1. https://c3js.org/reference.html
 2. https://c3js.org/examples.html
+
+
+## Submission
+Email me your working url. For eg: http://34.216.181.26:3000/graphHistorical.html
