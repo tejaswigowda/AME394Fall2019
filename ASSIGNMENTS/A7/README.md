@@ -12,6 +12,7 @@ Complete the daily average example:
 <https://github.com/tejaswigowda/AME394Fall2019/blob/master/graphingSensorData/public/graph.html
 > -- done in class
 
+## C3 Reference
 
-
-
+1. https://c3js.org/reference.html
+2. https://c3js.org/examples.html
