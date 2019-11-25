@@ -1,22 +1,21 @@
-# Assignment 7
+# Assignment 8
 
-## Due Nov 20<sup>th</sup> before midnight(you can work on it during class on Monday).
-
-
-Complete the history graph example:
-<https://github.com/tejaswigowda/AME394Fall2019/blob/master/graphingSensorData/public/graphHistorical.html
->
+## Due Dec 2<sup>nd</sup> before midnight
 
 
-## Inspiration
-<https://github.com/tejaswigowda/AME394Fall2019/blob/master/graphingSensorData/public/graph.html
-> -- done in class
 
-## C3 Reference
+## Task
+Implement an anolog dial displat for temperature and humidity. Design
+files given for bootstrapping.
 
-1. https://c3js.org/reference.html
-2. https://c3js.org/examples.html
+## References
+
+1. https://www.kollmorgen.com/en-us/products/motors/servo/servo-motors/
+2. https://www.arduino.cc/en/reference/servo
 
 
 ## Submission
-Email me your working url. For eg: http://34.216.181.26:3000/graphHistorical.html
+Demo in class
+
+## PS
+This assignmnet is done in groups of 2 (expect for AME598 students)
