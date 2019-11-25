@@ -12,10 +12,11 @@ files given for bootstrapping.
 
 1. https://www.kollmorgen.com/en-us/products/motors/servo/servo-motors/
 2. https://www.arduino.cc/en/reference/servo
+3. https://makeabox.io/ (optional)
 
 
 ## Submission
 Demo in class
 
 ## PS
-This assignmnet is done in groups of 2 (expect for AME598 students)
+This assignment is done in groups of 2 (expect for AME598 students)
