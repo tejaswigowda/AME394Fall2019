@@ -1,6 +1,6 @@
 # Assignment 7
 
-## Due Nov 20<sup>th</sup> before midnight(you can work on it during class on Monday).
+## Due Nov 25<sup>th</sup> before midnight(you can work on it during class on Monday).
 
 
 Complete the history graph example:
