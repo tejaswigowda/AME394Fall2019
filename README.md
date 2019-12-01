@@ -2,7 +2,7 @@
 
 **Client-server model**:https://en.wikipedia.org/wiki/Client%E2%80%93server_model#/
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Client-server-model.svg/2880px-Client-server-model.svg.png">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Client-server-model.svg/500px-Client-server-model.svg.png">
 
 **URL definition and specs**: https://en.wikipedia.org/wiki/Url
 
