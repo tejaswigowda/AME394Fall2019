@@ -16,7 +16,6 @@ TTGO T watch: https://t-watch-document-en.readthedocs.io/en/latest/get-started/i
 
 
 IP of ESP32 localhost:
-
 http://192.168.4.1
 
 
