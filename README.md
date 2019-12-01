@@ -1,6 +1,6 @@
 # AME394Fall2019
 
-Client -server model:https://en.wikipedia.org/wiki/Client%E2%80%93server_model#/
+*Client-server model*:https://en.wikipedia.org/wiki/Client%E2%80%93server_model#/
 
 URL definition and specs: https://en.wikipedia.org/wiki/Url
 
