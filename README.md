@@ -1,6 +1,6 @@
 # AME394Fall2019
 
-**Client-server model**:https://en.wikipedia.org/wiki/Client%E2%80%93server_model#/
+**Client-server model**: https://en.wikipedia.org/wiki/Client%E2%80%93server_model#/
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Client-server-model.svg/500px-Client-server-model.svg.png">
 
